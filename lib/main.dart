@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-// void main() {
-//   runApp(const MyApp());
-// }
+Future<void> main() async {
+  const envFile = String.fromEnvironment('ENV_FILE', defaultValue: '.env.dev');
+  await dotenv.load(fileName: envFile);
+  runApp(MyApp(homeScreen: HomePage()));
+}
 
 class MyApp extends StatelessWidget {
   final Widget homeScreen;
@@ -18,6 +20,16 @@ class MyApp extends StatelessWidget {
       title: "Restaurant Reservation System - ($envName)",
       theme: ThemeData(primarySwatch: Colors.blue),
       home: homeScreen,
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Home')),
+      body: Center(child: Text('Welcome!')),
     );
   }
 }
