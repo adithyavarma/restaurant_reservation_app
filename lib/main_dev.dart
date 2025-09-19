@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'main.dart'; // your actual MyApp widget
+import 'screens/login_screen.dart';
+import 'main.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName: ".env.development");
-  runApp(const MyApp());
+  // Load the .env.dev file
+  await dotenv.load(fileName: ".env.dev");
+
+  runApp(
+    const MyApp(
+      homeScreen: LoginScreen(),
+    ),
+  );
 }
